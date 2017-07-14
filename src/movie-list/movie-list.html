@@ -1,0 +1,40 @@
+<template>
+  <require from="blur-image"></require>
+
+  <div class="bkgd-layer"></div>
+
+  <section class="text-white">
+    <div class="container">
+      <div class="row pad-vert">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+
+          <form role="form" submit.delegate="getMovieSearchResults()">
+            <div class="form-group">
+              <label for="film" class="text-center">Search for a Movie</label>
+              <input type="text" value.bind="movieSearchField" class="form-control" id="film" placeholder="Movie Title">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <section class="au-animate">
+      <div class="row au-stagger poster-grid">
+        <div class="card-container au-animate" repeat.for="movie of movies">
+          <a href="#/movie/${movie.id}">
+            <div class="card">
+              <div>
+                <img src="${movie.poster_path ? 'http://image.tmdb.org/t/p/w500'+movie.poster_path : missingImage}" crossorigin ref="image" style="max-width:100%;"/>
+              </div>
+              <div class="content">
+                <p class="name">${movie.title}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </section>
+</template>

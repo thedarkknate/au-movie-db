@@ -1,0 +1,39 @@
+<template>
+  <require from="../services/take"></require>
+
+  <div class="bkgd-layer ${movie.backdrop_path ? 'has-bkgd' : ''}" style="background-image:url(${movie.backdrop_path ? 'http://image.tmdb.org/t/p/w500'+movie.backdrop_path : defaultBackgroundImage});"></div>
+
+  <section>
+    <div class="container screen-white pad-bottom">
+
+      <div class="row pad-vert pad-side">
+        <div class="col-xs-4 col-sm-3">
+          <img src="${movie.poster_path ? 'http://image.tmdb.org/t/p/w500'+movie.poster_path : missingMoviePoster}" alt="${movie.title}" style="max-width: 100%;">
+        </div>
+        <div class="col-xs-8 col-sm-9">
+          <h2>${movie.title}</h2>
+          <h5><strong>Release date:</strong> ${movie.release_date | date}</h5>
+          <p><strong>Synopsis</strong><br>${movie.overview}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="text-center"><strong>Cast</strong></p>
+          <div class="poster-grid">
+            <div repeat.for="actor of movie.credits.cast | take:15">
+              <a href="#/actor/${actor.id}">
+                <img src="${actor.profile_path ? 'http://image.tmdb.org/t/p/w500'+actor.profile_path : missingActorPic}" alt="${actor.name}" style="max-width: 100%;">
+              <strong>${actor.name}</strong>
+              </a><br>
+              <small>
+                as <em>${actor.character ? actor.character : 'TBD'}</em>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>  
+  </section>
+</template>
