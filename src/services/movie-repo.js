@@ -26,7 +26,7 @@ export class MovieRepo {
 
   getMovieDetails(movieId) {
     return new Promise((resolve, reject) => {
-      this.httpClient.fetch(`http://api.themoviedb.org/3/movie/${movieId}?api_key=62d49353ca5dcfe0b289e0056822b14b&append_to_response=credits`)
+      this.httpClient.fetch(`http://api.themoviedb.org/3/movie/${movieId}?api_key=${this.apiKey}&append_to_response=credits`)
         .then(response => response.json())
         .then(data => {
         resolve(data);
@@ -39,7 +39,7 @@ export class MovieRepo {
 
   getActorProfile(actorId) {
     return new Promise((resolve, reject) => {
-      this.httpClient.fetch(`http://api.themoviedb.org/3/person/${actorId}?api_key=62d49353ca5dcfe0b289e0056822b14b&append_to_response=movie_credits`)
+      this.httpClient.fetch(`http://api.themoviedb.org/3/person/${actorId}?api_key=${this.apiKey}&append_to_response=movie_credits`)
         .then(response => response.json())
         .then(data => {
         resolve(data);
